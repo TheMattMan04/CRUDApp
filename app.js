@@ -29,7 +29,6 @@ var PersonSchema = mongoose.Schema({
 var person = mongoose.model('Person', PersonSchema, 'people');
 
 app.post('/users', function(req, res) {
-    /*FIRST CHECK IF THERE IS ALREADY AN EXISTING NUMBER IN THE DB*/
     person.findOne({phoneNumber: req.body.phoneNumber}, function(err, thisPerson) {
         if(err) {
             return res.status(500).send(new ResultMessage('An error has occurred'));
