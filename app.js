@@ -28,7 +28,7 @@ var PersonSchema = mongoose.Schema({
 
 var person = mongoose.model('Person', PersonSchema, 'people');
 
-app.post('/users', function(req, res) {
+app.post('/people', function(req, res) {
     person.findOne({phoneNumber: req.body.phoneNumber}, function(err, thisPerson) {
         if(err) {
             return res.status(500).send(new ResultMessage('An error has occurred'));
@@ -50,7 +50,7 @@ app.post('/users', function(req, res) {
     });
 });
 
-app.get('/users', function(req, res) {
+app.get('/people', function(req, res) {
     person.find({}, '-_id -__v', function(err, person) {
         if(err) {
             return res.status(500).send(err);
@@ -62,7 +62,7 @@ app.get('/users', function(req, res) {
     });
 });
 
-app.get('/users/:phoneNumber', function(req, res) {
+app.get('/people/:phoneNumber', function(req, res) {
     person.findOne({phoneNumber : req.params.phoneNumber}, '-_id -__v', function(err, person) {
         if(err) {
             return res.status(500).send(new ResultMessage(err));
@@ -78,7 +78,7 @@ app.get('/users/:phoneNumber', function(req, res) {
     });
 });
 
-app.delete('/users', function(req, res) {
+app.delete('/people', function(req, res) {
     person.deleteMany({}, function(err, person) {
         if(err) {
             return res.status(500).send(new ResultMessage(err));
@@ -87,7 +87,7 @@ app.delete('/users', function(req, res) {
     });
 });
 
-app.delete('/users/:phoneNumber', function(req, res) {
+app.delete('/people/:phoneNumber', function(req, res) {
     person.findOne({phoneNumber: req.params.phoneNumber}, function(err, person) {
         if(err) {
             return res.status(500).send(new ResultMessage('An error has occurred'));
@@ -107,7 +107,7 @@ app.delete('/users/:phoneNumber', function(req, res) {
     });
 });
 
-app.put('/users/:phoneNumber', function(req, res) {
+app.put('/people/:phoneNumber', function(req, res) {
     person.findOne({phoneNumber: req.params.phoneNumber}, function(err, person) {
         if(err) {
             return res.status(500).send(new ResultMessage('An error has occurred'));
