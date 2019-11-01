@@ -22,8 +22,8 @@ db.once('open', function() {
 
 var PersonSchema = mongoose.Schema({
     name: String,
-    age: Number,
-    phoneNumber: Number
+    age: String,
+    phoneNumber: String
 });
 
 var person = mongoose.model('Person', PersonSchema, 'people');
@@ -131,7 +131,7 @@ app.put('/people/:phoneNumber', function(req, res) {
     });
 });
 
-const server = app.listen(process.env.PORT || 3000, function () {
+const server = app.listen(process.env.PORT || 5000, function () {
     console.log('Listening on port %d', server.address().port);
 });
 
